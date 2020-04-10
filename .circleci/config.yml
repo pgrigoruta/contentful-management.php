@@ -1,7 +1,7 @@
 orbs:
   gh-pages: sugarshin/gh-pages@0.0.6
 
-version: 2
+version: 2.1
 
 #workflows:
 #  version: 2
