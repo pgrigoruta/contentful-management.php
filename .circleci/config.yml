@@ -2,12 +2,28 @@ version: 2
 
 workflows:
   version: 2
-  lint_and_test:
+
+  main:
     jobs:
       - lint
       - test72
       - test73
       - test74
+      - docs_build:
+          requires:
+            - lint
+            - test72
+            - test73
+            - test74
+          filters:
+            branches:
+              only: master
+      - docs_deploy:
+          requires:
+            - docs_build
+          filters:
+            branches:
+              only: master
 
 jobs:
   lint:
@@ -62,3 +78,25 @@ jobs:
       - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
       - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
       - run: { name: "Test suite", command: "composer test-quick-fail" }
+
+  docs_build:
+    docker:
+      - image: circleci/php:7.4-cli
+    steps:
+      - checkout
+      - run: {name: "Make docs", command: "sh ./scripts/prepare-docs.sh"}
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: build/docs
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist build/docs/html
+      
