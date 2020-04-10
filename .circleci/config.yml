@@ -93,6 +93,7 @@ jobs:
       - run: { name: "Test suite", command: "composer test-quick-fail" }
 
   docs_build:
+    context: paul
     environment:
       TRAVIS_REPO_SLUG: pgrigoruta/contentful-management.php
     docker:
@@ -102,4 +103,4 @@ jobs:
       - run: {name: "Make docs", command: "sh ./scripts/prepare-docs.sh" }
       - gh-pages/deploy:
           build-dir: build/docs
-          ssh-fingerprints: 'ff:22:gs:v6:gg:2g:22:7j:73:gf:ja:36:ff:y2:22:89'
+          ssh-fingerprints: $SSH_FINGERPRINT
