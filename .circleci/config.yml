@@ -1,3 +1,6 @@
+orbs:
+  gh-pages: sugarshin/gh-pages@0.0.6
+
 version: 2
 
 #workflows:
@@ -98,4 +101,6 @@ jobs:
       - checkout
       - run: {name: "Make docs", command: "sh ./scripts/prepare-docs.sh" }
       - run: {name: "Install and configure dependencies", command: "npm install -g --silent gh-pages@2.0.1" }
-      - run: {name: "Deploy docs to gh-pages branch", command: "gh-pages --dist build/docs/api" }
+      - gh-pages/deploy:
+          build-dir: build/docs
+          ssh-fingerprints: 'ff:22:gs:v6:gg:2g:22:7j:73:gf:ja:36:ff:y2:22:89'
