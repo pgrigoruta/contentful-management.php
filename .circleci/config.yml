@@ -96,11 +96,10 @@ jobs:
     environment:
       TRAVIS_REPO_SLUG: pgrigoruta/contentful-management.php
     docker:
-      - image: circleci/php:7.2-cli-node
+      - image: circleci/php:7.2-cli
     steps:
       - checkout
       - run: {name: "Make docs", command: "sh ./scripts/prepare-docs.sh" }
-      - run: {name: "Install and configure dependencies", command: "npm install -g --silent gh-pages@2.0.1" }
       - gh-pages/deploy:
           build-dir: build/docs
           ssh-fingerprints: 'ff:22:gs:v6:gg:2g:22:7j:73:gf:ja:36:ff:y2:22:89'
