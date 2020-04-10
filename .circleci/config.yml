@@ -93,7 +93,7 @@ jobs:
     environment:
       TRAVIS_REPO_SLUG: pgrigoruta/contentful-management.php
     docker:
-      - image: circleci/7.2-cli-node
+      - image: circleci/php:7.2-cli-node
     steps:
       - checkout
       - run: {name: "Make docs", command: "sh ./scripts/prepare-docs.sh" }
