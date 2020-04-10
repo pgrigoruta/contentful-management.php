@@ -103,7 +103,8 @@ jobs:
     steps:
       - checkout
       - run: {name: "Make docs", command: "sh ./scripts/prepare-docs.sh"}
-  docs-deploy:
+        
+  docs_deploy:
     docker:
       - image: node:8.10.0
     steps:
