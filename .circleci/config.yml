@@ -93,8 +93,6 @@ jobs:
       - run: { name: "Test suite", command: "composer test-quick-fail" }
 
   docs_build:
-    context: 
-      - paul
     environment:
       TRAVIS_REPO_SLUG: pgrigoruta/contentful-management.php
     docker:
