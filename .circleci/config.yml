@@ -96,6 +96,8 @@ jobs:
       - run: { name: "Test suite", command: "composer test-quick-fail" }
 
   docs_build:
+    environment:
+      TRAVIS_REPO_SLUG: pgrigoruta/contentful-management.php
     docker:
       - image: circleci/php:7.2-cli
     steps:
