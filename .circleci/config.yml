@@ -21,12 +21,6 @@ workflows:
           filters:
             branches:
               only: master
-      - docs_deploy:
-          requires:
-            - docs_build
-          filters:
-            branches:
-              only: master
 
 
 jobs:
