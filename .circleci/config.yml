@@ -102,3 +102,4 @@ jobs:
       - run: {name: "Make docs", command: "sh ./scripts/prepare-docs.sh" }
       - gh-pages/deploy:
           build-dir: build/docs
+          ssh-fingerprints: 9f:55:2c:11:fe:21:e0:80:36:7e:a5:63:08:b2:ce:c4
