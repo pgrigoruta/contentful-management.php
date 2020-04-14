@@ -3,40 +3,31 @@ orbs:
 
 version: 2.1
 
-#workflows:
-#  version: 2
-
-#  main:
-#    jobs:
-#      - lint
-#      - test72
-#      - test73
-#      - test74
-#      - docs_build:
-#          requires:
-#            - lint
-#            - test72
-#            - test73
-#            - test74
-#          filters:
-#            branches:
-#              only: master
-#      - docs_deploy:
-#          requires:
-#            - docs_build
-#          filters:
-#            branches:
-#              only: master
-
 workflows:
   version: 2
 
   main:
     jobs:
+      - lint
+      - test72
+      - test73
+      - test74
       - docs_build:
+          requires:
+            - lint
+            - test72
+            - test73
+            - test74
           filters:
             branches:
               only: master
+      - docs_deploy:
+          requires:
+            - docs_build
+          filters:
+            branches:
+              only: master
+
 
 jobs:
   lint:
